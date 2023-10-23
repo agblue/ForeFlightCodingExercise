@@ -7,10 +7,10 @@
 
 import UIKit
 
-class MainViewController: UIViewController, MainViewModelProtocol {
+class MainViewController: UIViewController {
 
     // MARK: - Private Properties
-    private let viewModel = MainViewModel()
+    private let viewModel: MainViewModel
 
     // MARK: - UI Elemenets
     private let addButton: UIBarButtonItem = {
@@ -26,6 +26,15 @@ class MainViewController: UIViewController, MainViewModelProtocol {
     }()
 
     // MARK: - Lifecycle Functions
+    init(viewModel: MainViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +48,8 @@ class MainViewController: UIViewController, MainViewModelProtocol {
     private func setupView() {
         title = "ForeFlight Weather"
         view.backgroundColor = .white
+
+        self.viewModel.delegate = self
 
         locationsTableView.delegate = self
         locationsTableView.dataSource = self
@@ -71,7 +82,7 @@ class MainViewController: UIViewController, MainViewModelProtocol {
     }
 }
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource Protocol
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.locations.count
@@ -83,5 +94,28 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let location = viewModel.locations[indexPath.row]
         cell.textLabel?.text = location
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.selectLocation(at: indexPath.row)
+    }
+}
+
+// MARK: - MainViewModelDelegate Protocol
+extension MainViewController: MainViewModelDelegate {
+    func refreshView() {
+        updateView()
+    }
+
+    func showLocation(location: String) {
+        print("PRINT: Show the location \(location)")
+
+        let locationViewModel = LocationDetailViewModel(location: location)
+        let locationViewController = LocationDetailViewController(viewModel: locationViewModel)
+        let navigationController = UINavigationController()
+        navigationController.pushViewController(locationViewController, animated: false)
+
+        let splitViewController = self.splitViewController
+        splitViewController?.showDetailViewController(navigationController, sender: self)
     }
 }

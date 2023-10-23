@@ -18,12 +18,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        let mainViewController = MainViewController()
+        let mainViewModel = MainViewModel(delegate: nil)
+        let mainViewController = MainViewController(viewModel: mainViewModel)
         let navigationController = UINavigationController()
         navigationController.pushViewController(mainViewController, animated: false)
 
-        let splitViewController = UISplitViewController()
-        splitViewController.viewControllers = [navigationController]
+        let detailViewModel = LocationDetailViewModel(location: nil)
+        let detailViewController = LocationDetailViewController(viewModel: detailViewModel)
+
+        let splitViewController = UISplitViewController(style: .doubleColumn)
+        splitViewController.viewControllers = [navigationController, detailViewController]
 
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = splitViewController

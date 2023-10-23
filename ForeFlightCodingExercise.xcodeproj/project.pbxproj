@@ -13,6 +13,8 @@
 		F5793B182AE6C3B3005581CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5793B162AE6C3B3005581CB /* LaunchScreen.storyboard */; };
 		F5793B202AE6C47E005581CB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B1F2AE6C47E005581CB /* MainViewController.swift */; };
 		F5793B222AE6C912005581CB /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B212AE6C912005581CB /* MainViewModel.swift */; };
+		F5793B242AE6CD99005581CB /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B232AE6CD99005581CB /* LocationDetailViewController.swift */; };
+		F5793B262AE6CDED005581CB /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B252AE6CDED005581CB /* LocationDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		F5793B192AE6C3B3005581CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5793B1F2AE6C47E005581CB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F5793B212AE6C912005581CB /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		F5793B232AE6CD99005581CB /* LocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
+		F5793B252AE6CDED005581CB /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				F5793B0D2AE6C3B2005581CB /* SceneDelegate.swift */,
 				F5793B1F2AE6C47E005581CB /* MainViewController.swift */,
 				F5793B212AE6C912005581CB /* MainViewModel.swift */,
+				F5793B232AE6CD99005581CB /* LocationDetailViewController.swift */,
+				F5793B252AE6CDED005581CB /* LocationDetailViewModel.swift */,
 				F5793B142AE6C3B3005581CB /* Assets.xcassets */,
 				F5793B162AE6C3B3005581CB /* LaunchScreen.storyboard */,
 				F5793B192AE6C3B3005581CB /* Info.plist */,
@@ -141,6 +147,8 @@
 				F5793B0C2AE6C3B2005581CB /* AppDelegate.swift in Sources */,
 				F5793B0E2AE6C3B2005581CB /* SceneDelegate.swift in Sources */,
 				F5793B222AE6C912005581CB /* MainViewModel.swift in Sources */,
+				F5793B262AE6CDED005581CB /* LocationDetailViewModel.swift in Sources */,
+				F5793B242AE6CD99005581CB /* LocationDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
