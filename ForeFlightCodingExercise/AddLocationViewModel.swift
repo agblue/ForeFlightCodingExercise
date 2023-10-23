@@ -5,10 +5,16 @@
 //  Created by Danny Tsang on 10/23/23.
 //
 
+import CoreData
 import Foundation
+
+protocol AddLocationViewModelDelegate: AddLocationViewController {
+    func addLocation(success: Bool)
+}
 
 class AddLocationViewModel {
 
+    weak var delegate: AddLocationViewModelDelegate?
     var location: String?
 
     init(location: String?) {
@@ -21,15 +27,13 @@ class AddLocationViewModel {
               location.unicodeScalars.count == 4 else { return }
 
         // Call the API to retrive location
+        self.location = location
         Task {
-            if let report = await DataManager().getReportFor(location: location) {
-                print("PRINT: Report downloaded: \(report.report.conditions.text)")
-
-                // Save retrieved information to CoreData
+            let result = await DataManager().getReportFor(location: location)
+            print("PRINT: Report downloaded result: \(result)")
+            DispatchQueue.main.async { [weak self] in
+                self?.delegate?.addLocation(success: result)
             }
-
-            print("PRINT: Report Download Failed")
-            // Handle Errors
         }
     }
 }

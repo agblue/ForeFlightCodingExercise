@@ -22,7 +22,15 @@
 		F5793B312AE7051E005581CB /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B302AE7051E005581CB /* ReportModel.swift */; };
 		F5793B332AE7052E005581CB /* ConditionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B322AE7052E005581CB /* ConditionsModel.swift */; };
 		F5793B352AE7053C005581CB /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B342AE7053C005581CB /* ForecastModel.swift */; };
-		F5793B372AE70548005581CB /* PeriodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B362AE70548005581CB /* PeriodModel.swift */; };
+		F5793B3A2AE70694005581CB /* ForeFlightWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5793B382AE70694005581CB /* ForeFlightWeather.xcdatamodeld */; };
+		F5793B522AE71728005581CB /* ForecastEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B4C2AE71728005581CB /* ForecastEntity+CoreDataClass.swift */; };
+		F5793B532AE71728005581CB /* ForecastEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B4D2AE71728005581CB /* ForecastEntity+CoreDataProperties.swift */; };
+		F5793B542AE71728005581CB /* ConditionsEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B4E2AE71728005581CB /* ConditionsEntity+CoreDataClass.swift */; };
+		F5793B552AE71728005581CB /* ConditionsEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B4F2AE71728005581CB /* ConditionsEntity+CoreDataProperties.swift */; };
+		F5793B562AE71728005581CB /* ReportEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B502AE71728005581CB /* ReportEntity+CoreDataClass.swift */; };
+		F5793B572AE71728005581CB /* ReportEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B512AE71728005581CB /* ReportEntity+CoreDataProperties.swift */; };
+		F5793B5A2AE722FD005581CB /* ForecastConditionEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B582AE722FD005581CB /* ForecastConditionEntity+CoreDataClass.swift */; };
+		F5793B5B2AE722FD005581CB /* ForecastConditionEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B592AE722FD005581CB /* ForecastConditionEntity+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +51,15 @@
 		F5793B302AE7051E005581CB /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
 		F5793B322AE7052E005581CB /* ConditionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsModel.swift; sourceTree = "<group>"; };
 		F5793B342AE7053C005581CB /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
-		F5793B362AE70548005581CB /* PeriodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodModel.swift; sourceTree = "<group>"; };
+		F5793B392AE70694005581CB /* ForeFlightWeather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ForeFlightWeather.xcdatamodel; sourceTree = "<group>"; };
+		F5793B4C2AE71728005581CB /* ForecastEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F5793B4D2AE71728005581CB /* ForecastEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F5793B4E2AE71728005581CB /* ConditionsEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConditionsEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F5793B4F2AE71728005581CB /* ConditionsEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConditionsEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F5793B502AE71728005581CB /* ReportEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F5793B512AE71728005581CB /* ReportEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F5793B582AE722FD005581CB /* ForecastConditionEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastConditionEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F5793B592AE722FD005581CB /* ForecastConditionEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastConditionEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +100,7 @@
 				F5793B292AE6E98C005581CB /* AddLocationViewModel.swift */,
 				F5793B232AE6CD99005581CB /* LocationDetailViewController.swift */,
 				F5793B252AE6CDED005581CB /* LocationDetailViewModel.swift */,
+				F5793B4B2AE70EDF005581CB /* CoreDataEntities */,
 				F5793B2D2AE704FC005581CB /* DataModels */,
 				F5793B142AE6C3B3005581CB /* Assets.xcassets */,
 				F5793B162AE6C3B3005581CB /* LaunchScreen.storyboard */,
@@ -96,13 +113,28 @@
 			isa = PBXGroup;
 			children = (
 				F5793B2B2AE6F993005581CB /* DataManager.swift */,
-				F5793B362AE70548005581CB /* PeriodModel.swift */,
 				F5793B342AE7053C005581CB /* ForecastModel.swift */,
 				F5793B322AE7052E005581CB /* ConditionsModel.swift */,
 				F5793B302AE7051E005581CB /* ReportModel.swift */,
 				F5793B2E2AE7050E005581CB /* WeatherReport.swift */,
+				F5793B382AE70694005581CB /* ForeFlightWeather.xcdatamodeld */,
 			);
 			path = DataModels;
+			sourceTree = "<group>";
+		};
+		F5793B4B2AE70EDF005581CB /* CoreDataEntities */ = {
+			isa = PBXGroup;
+			children = (
+				F5793B582AE722FD005581CB /* ForecastConditionEntity+CoreDataClass.swift */,
+				F5793B592AE722FD005581CB /* ForecastConditionEntity+CoreDataProperties.swift */,
+				F5793B4C2AE71728005581CB /* ForecastEntity+CoreDataClass.swift */,
+				F5793B4D2AE71728005581CB /* ForecastEntity+CoreDataProperties.swift */,
+				F5793B4E2AE71728005581CB /* ConditionsEntity+CoreDataClass.swift */,
+				F5793B4F2AE71728005581CB /* ConditionsEntity+CoreDataProperties.swift */,
+				F5793B502AE71728005581CB /* ReportEntity+CoreDataClass.swift */,
+				F5793B512AE71728005581CB /* ReportEntity+CoreDataProperties.swift */,
+			);
+			path = CoreDataEntities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,20 +207,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5793B542AE71728005581CB /* ConditionsEntity+CoreDataClass.swift in Sources */,
 				F5793B202AE6C47E005581CB /* MainViewController.swift in Sources */,
 				F5793B352AE7053C005581CB /* ForecastModel.swift in Sources */,
-				F5793B372AE70548005581CB /* PeriodModel.swift in Sources */,
 				F5793B0C2AE6C3B2005581CB /* AppDelegate.swift in Sources */,
 				F5793B2F2AE7050E005581CB /* WeatherReport.swift in Sources */,
+				F5793B572AE71728005581CB /* ReportEntity+CoreDataProperties.swift in Sources */,
 				F5793B0E2AE6C3B2005581CB /* SceneDelegate.swift in Sources */,
 				F5793B2A2AE6E98C005581CB /* AddLocationViewModel.swift in Sources */,
+				F5793B562AE71728005581CB /* ReportEntity+CoreDataClass.swift in Sources */,
 				F5793B282AE6E53E005581CB /* AddLocationViewController.swift in Sources */,
+				F5793B5A2AE722FD005581CB /* ForecastConditionEntity+CoreDataClass.swift in Sources */,
 				F5793B222AE6C912005581CB /* MainViewModel.swift in Sources */,
+				F5793B522AE71728005581CB /* ForecastEntity+CoreDataClass.swift in Sources */,
+				F5793B552AE71728005581CB /* ConditionsEntity+CoreDataProperties.swift in Sources */,
+				F5793B3A2AE70694005581CB /* ForeFlightWeather.xcdatamodeld in Sources */,
 				F5793B332AE7052E005581CB /* ConditionsModel.swift in Sources */,
+				F5793B5B2AE722FD005581CB /* ForecastConditionEntity+CoreDataProperties.swift in Sources */,
 				F5793B312AE7051E005581CB /* ReportModel.swift in Sources */,
 				F5793B262AE6CDED005581CB /* LocationDetailViewModel.swift in Sources */,
 				F5793B2C2AE6F993005581CB /* DataManager.swift in Sources */,
 				F5793B242AE6CD99005581CB /* LocationDetailViewController.swift in Sources */,
+				F5793B532AE71728005581CB /* ForecastEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +441,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F5793B382AE70694005581CB /* ForeFlightWeather.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F5793B392AE70694005581CB /* ForeFlightWeather.xcdatamodel */,
+			);
+			currentVersion = F5793B392AE70694005581CB /* ForeFlightWeather.xcdatamodel */;
+			path = ForeFlightWeather.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F5793B002AE6C3B2005581CB /* Project object */;
 }

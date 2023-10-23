@@ -15,6 +15,9 @@ protocol AddLocationViewControllerDelegate: UIViewController {
 class AddLocationViewController: UIViewController {
     static let maxLocationLength = 4
 
+    // MARK: - Public properties
+    weak var delegate: AddLocationViewControllerDelegate?
+
     // MARK: - Private Properties
     private let viewModel: AddLocationViewModel = AddLocationViewModel(location: nil)
 
@@ -78,6 +81,7 @@ class AddLocationViewController: UIViewController {
         title = "Add Airport Location"
         view.backgroundColor = .white
 
+        viewModel.delegate = self
         addTextField.delegate = self
     }
 
@@ -117,6 +121,10 @@ class AddLocationViewController: UIViewController {
     }
 
     @objc private func addButtonTapped() {
+        guard addTextField.text?.unicodeScalars.count == AddLocationViewController.maxLocationLength else {
+            return
+        }
+        addTextField.resignFirstResponder()
         viewModel.addLocation(addTextField.text)
     }
 }
@@ -142,5 +150,22 @@ extension AddLocationViewController: UITextFieldDelegate {
             return false
         }
         return true
+    }
+}
+
+extension AddLocationViewController: AddLocationViewModelDelegate {
+    func addLocation(success: Bool) {
+        guard let location = viewModel.location else { return }
+        if success {
+            self.delegate?.didAddLocation(location)
+            dismiss(animated: true)
+            return
+        }
+
+        let alert = UIAlertController(title: "Invalid Location", message: "Unable to add the location \(location)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.addTextField.becomeFirstResponder()
+        })
+        present(alert, animated: true)
     }
 }

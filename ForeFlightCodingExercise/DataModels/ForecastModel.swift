@@ -11,7 +11,6 @@ class ForecastModel: Codable {
     let text: String
     let ident: String
     let dateIssued: Date
-    let period: PeriodModel
     let lat: Double
     let lon: Double
     let elevationFt: Float

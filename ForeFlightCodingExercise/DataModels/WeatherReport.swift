@@ -8,5 +8,9 @@
 import Foundation
 
 class WeatherReport: Codable {
-    let report: ReportModel
+    let report: ReportModel?
+
+    init(report: ReportModel?) {
+        self.report = report
+    }
 }

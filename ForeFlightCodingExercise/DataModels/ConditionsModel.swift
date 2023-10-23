@@ -14,12 +14,10 @@ class ConditionsModel: Codable {
     let lat: Double
     let lon: Double
     let elevationFt: Float
-
     let tempC: Float?
     let dewpointC: Float?
     let pressureHg: Float?
     let pressureHpa: Double?
-
     let relativeHumidity: Float
     let flightRules: String
 }
