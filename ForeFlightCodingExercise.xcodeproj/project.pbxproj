@@ -17,6 +17,12 @@
 		F5793B262AE6CDED005581CB /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B252AE6CDED005581CB /* LocationDetailViewModel.swift */; };
 		F5793B282AE6E53E005581CB /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B272AE6E53E005581CB /* AddLocationViewController.swift */; };
 		F5793B2A2AE6E98C005581CB /* AddLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B292AE6E98C005581CB /* AddLocationViewModel.swift */; };
+		F5793B2C2AE6F993005581CB /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B2B2AE6F993005581CB /* DataManager.swift */; };
+		F5793B2F2AE7050E005581CB /* WeatherReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B2E2AE7050E005581CB /* WeatherReport.swift */; };
+		F5793B312AE7051E005581CB /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B302AE7051E005581CB /* ReportModel.swift */; };
+		F5793B332AE7052E005581CB /* ConditionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B322AE7052E005581CB /* ConditionsModel.swift */; };
+		F5793B352AE7053C005581CB /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B342AE7053C005581CB /* ForecastModel.swift */; };
+		F5793B372AE70548005581CB /* PeriodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B362AE70548005581CB /* PeriodModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +38,12 @@
 		F5793B252AE6CDED005581CB /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
 		F5793B272AE6E53E005581CB /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		F5793B292AE6E98C005581CB /* AddLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewModel.swift; sourceTree = "<group>"; };
+		F5793B2B2AE6F993005581CB /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		F5793B2E2AE7050E005581CB /* WeatherReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherReport.swift; sourceTree = "<group>"; };
+		F5793B302AE7051E005581CB /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
+		F5793B322AE7052E005581CB /* ConditionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsModel.swift; sourceTree = "<group>"; };
+		F5793B342AE7053C005581CB /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
+		F5793B362AE70548005581CB /* PeriodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,11 +84,25 @@
 				F5793B292AE6E98C005581CB /* AddLocationViewModel.swift */,
 				F5793B232AE6CD99005581CB /* LocationDetailViewController.swift */,
 				F5793B252AE6CDED005581CB /* LocationDetailViewModel.swift */,
+				F5793B2D2AE704FC005581CB /* DataModels */,
 				F5793B142AE6C3B3005581CB /* Assets.xcassets */,
 				F5793B162AE6C3B3005581CB /* LaunchScreen.storyboard */,
 				F5793B192AE6C3B3005581CB /* Info.plist */,
 			);
 			path = ForeFlightCodingExercise;
+			sourceTree = "<group>";
+		};
+		F5793B2D2AE704FC005581CB /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				F5793B2B2AE6F993005581CB /* DataManager.swift */,
+				F5793B362AE70548005581CB /* PeriodModel.swift */,
+				F5793B342AE7053C005581CB /* ForecastModel.swift */,
+				F5793B322AE7052E005581CB /* ConditionsModel.swift */,
+				F5793B302AE7051E005581CB /* ReportModel.swift */,
+				F5793B2E2AE7050E005581CB /* WeatherReport.swift */,
+			);
+			path = DataModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,12 +176,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5793B202AE6C47E005581CB /* MainViewController.swift in Sources */,
+				F5793B352AE7053C005581CB /* ForecastModel.swift in Sources */,
+				F5793B372AE70548005581CB /* PeriodModel.swift in Sources */,
 				F5793B0C2AE6C3B2005581CB /* AppDelegate.swift in Sources */,
+				F5793B2F2AE7050E005581CB /* WeatherReport.swift in Sources */,
 				F5793B0E2AE6C3B2005581CB /* SceneDelegate.swift in Sources */,
 				F5793B2A2AE6E98C005581CB /* AddLocationViewModel.swift in Sources */,
 				F5793B282AE6E53E005581CB /* AddLocationViewController.swift in Sources */,
 				F5793B222AE6C912005581CB /* MainViewModel.swift in Sources */,
+				F5793B332AE7052E005581CB /* ConditionsModel.swift in Sources */,
+				F5793B312AE7051E005581CB /* ReportModel.swift in Sources */,
 				F5793B262AE6CDED005581CB /* LocationDetailViewModel.swift in Sources */,
+				F5793B2C2AE6F993005581CB /* DataManager.swift in Sources */,
 				F5793B242AE6CD99005581CB /* LocationDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

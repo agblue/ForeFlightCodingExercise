@@ -16,10 +16,20 @@ class AddLocationViewModel {
     }
 
     func addLocation(_ location: String?) {
-        guard location?.unicodeScalars.count == 4 else { return }
         // Validate the location
+        guard let location = location,
+              location.unicodeScalars.count == 4 else { return }
+
         // Call the API to retrive location
-        // Save retrieved information to CoreData
-        // Handle Errors
+        Task {
+            if let report = await DataManager().getReportFor(location: location) {
+                print("PRINT: Report downloaded: \(report.report.conditions.text)")
+
+                // Save retrieved information to CoreData
+            }
+
+            print("PRINT: Report Download Failed")
+            // Handle Errors
+        }
     }
 }
