@@ -107,9 +107,15 @@ extension MainViewController: MainViewModelDelegate {
         updateView()
     }
 
-    func showLocation(location: String) {
-        print("PRINT: Show the location \(location)")
+    func addLocation() {
+        let addLocationViewController = AddLocationViewController(nibName: nil, bundle: nil)
+//        addLocationViewController.delegate = self
+        let navigationController = UINavigationController()
+        navigationController.pushViewController(addLocationViewController, animated: false)
+        present(navigationController, animated: true)
+    }
 
+    func showLocation(location: String) {
         let locationViewModel = LocationDetailViewModel(location: location)
         let locationViewController = LocationDetailViewController(viewModel: locationViewModel)
         let navigationController = UINavigationController()
@@ -119,3 +125,5 @@ extension MainViewController: MainViewModelDelegate {
         splitViewController?.showDetailViewController(navigationController, sender: self)
     }
 }
+
+

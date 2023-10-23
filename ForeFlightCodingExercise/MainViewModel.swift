@@ -9,6 +9,7 @@ import Foundation
 
 protocol MainViewModelDelegate: MainViewController {
     func refreshView()
+    func addLocation()
     func showLocation(location: String)
 }
 
@@ -26,7 +27,7 @@ class MainViewModel {
 
     func showAddLocation() {
         print("PRINT: Show the Add Location Modal and capture the returned location.")
-
+        self.delegate?.addLocation()
     }
 
     func selectLocation(at index: Int) {
