@@ -36,4 +36,10 @@ class MainViewModel {
         let location = locations[index]
         self.delegate?.showLocation(location: location)
     }
+
+
+
+    func addLocation(_ location: String) {
+        locations.insert(location, at: 0)
+    }
 }

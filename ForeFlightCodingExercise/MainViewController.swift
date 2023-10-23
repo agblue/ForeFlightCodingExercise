@@ -109,7 +109,7 @@ extension MainViewController: MainViewModelDelegate {
 
     func addLocation() {
         let addLocationViewController = AddLocationViewController(nibName: nil, bundle: nil)
-//        addLocationViewController.delegate = self
+        addLocationViewController.delegate = self
         let navigationController = UINavigationController()
         navigationController.pushViewController(addLocationViewController, animated: false)
         present(navigationController, animated: true)
@@ -126,4 +126,18 @@ extension MainViewController: MainViewModelDelegate {
     }
 }
 
+extension MainViewController: AddLocationViewControllerDelegate {
+    func didCancel() {
+        // Cancel AddLocation was tapped.
+    }
+    
+    func didAddLocation(_ location: String) {
+        // Add the new location to the recents list.
+        viewModel.addLocation(location)
 
+        // Select the location in the details view.
+        locationsTableView.reloadData()
+        locationsTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
+        showLocation(location: location)
+    }
+}

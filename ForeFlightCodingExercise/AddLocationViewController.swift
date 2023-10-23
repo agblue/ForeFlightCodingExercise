@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol AddLocationViewControllerDelegate: UIViewController {
+protocol AddLocationViewControllerDelegate: AnyObject {
     func didCancel()
     func didAddLocation(_ location: String)
 }
