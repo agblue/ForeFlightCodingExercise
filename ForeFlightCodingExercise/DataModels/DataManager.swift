@@ -49,7 +49,7 @@ class DataManager {
     private func saveReportToCoreData(location: String, report: ReportModel) {
         guard let moc = moc else { return }
         let reportEntity = ReportEntity(context: moc)
-        reportEntity.ident = location
+        reportEntity.ident = location.lowercased()
 
         let conditionsEntity = ConditionsEntity(context: moc)
         conditionsEntity.dateIssued = report.conditions.dateIssued

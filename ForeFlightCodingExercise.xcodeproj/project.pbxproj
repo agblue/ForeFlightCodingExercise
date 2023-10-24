@@ -31,6 +31,7 @@
 		F5793B572AE71728005581CB /* ReportEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B512AE71728005581CB /* ReportEntity+CoreDataProperties.swift */; };
 		F5793B5A2AE722FD005581CB /* ForecastConditionEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B582AE722FD005581CB /* ForecastConditionEntity+CoreDataClass.swift */; };
 		F5793B5B2AE722FD005581CB /* ForecastConditionEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B592AE722FD005581CB /* ForecastConditionEntity+CoreDataProperties.swift */; };
+		F5793B5F2AE75B30005581CB /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B5E2AE75B30005581CB /* Locations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		F5793B512AE71728005581CB /* ReportEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F5793B582AE722FD005581CB /* ForecastConditionEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastConditionEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F5793B592AE722FD005581CB /* ForecastConditionEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastConditionEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F5793B5E2AE75B30005581CB /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				F5793B302AE7051E005581CB /* ReportModel.swift */,
 				F5793B2E2AE7050E005581CB /* WeatherReport.swift */,
 				F5793B382AE70694005581CB /* ForeFlightWeather.xcdatamodeld */,
+				F5793B5E2AE75B30005581CB /* Locations.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				F5793B572AE71728005581CB /* ReportEntity+CoreDataProperties.swift in Sources */,
 				F5793B0E2AE6C3B2005581CB /* SceneDelegate.swift in Sources */,
 				F5793B2A2AE6E98C005581CB /* AddLocationViewModel.swift in Sources */,
+				F5793B5F2AE75B30005581CB /* Locations.swift in Sources */,
 				F5793B562AE71728005581CB /* ReportEntity+CoreDataClass.swift in Sources */,
 				F5793B282AE6E53E005581CB /* AddLocationViewController.swift in Sources */,
 				F5793B5A2AE722FD005581CB /* ForecastConditionEntity+CoreDataClass.swift in Sources */,

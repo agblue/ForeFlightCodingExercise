@@ -9,37 +9,26 @@ import Foundation
 
 protocol MainViewModelDelegate: MainViewController {
     func refreshView()
-    func addLocation()
     func showLocation(location: String)
 }
 
 class MainViewModel {
 
-    var locations: [String]
+    var locations = Locations()
 
     weak var delegate: MainViewModelDelegate?
 
     init(delegate: MainViewModelDelegate?) {
         self.delegate = delegate
-
-        locations = ["KHOU", "KPWM", "KAUS"]
-    }
-
-    func showAddLocation() {
-        print("PRINT: Show the Add Location Modal and capture the returned location.")
-        self.delegate?.addLocation()
     }
 
     func selectLocation(at index: Int) {
-        guard index < locations.count else { return }
-
-        let location = locations[index]
+        guard index < locations.recentLocations.count else { return }
+        let location = locations.recentLocations[index]
         self.delegate?.showLocation(location: location)
     }
 
-
-
     func addLocation(_ location: String) {
-        locations.insert(location, at: 0)
+        locations.addLocation(location)
     }
 }

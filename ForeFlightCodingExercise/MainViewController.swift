@@ -74,24 +74,33 @@ class MainViewController: UIViewController {
 
     // MARK: - Private Functions
     @objc private func addButtonTapped() {
-        viewModel.showAddLocation()
+        showAddLocation()
     }
 
     // MARK: - Public Functions
     func updateView() {
+        locationsTableView.reloadData()
+    }
+
+    func showAddLocation() {
+        let addLocationViewController = AddLocationViewController(nibName: nil, bundle: nil)
+        addLocationViewController.delegate = self
+        let navigationController = UINavigationController()
+        navigationController.pushViewController(addLocationViewController, animated: false)
+        present(navigationController, animated: true)
     }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource Protocol
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.locations.count
+        return viewModel.locations.recentLocations.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? UITableViewCell else { return UITableViewCell() }
 
-        let location = viewModel.locations[indexPath.row]
+        let location = viewModel.locations.recentLocations[indexPath.row]
         cell.textLabel?.text = location
         return cell
     }
@@ -105,14 +114,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 extension MainViewController: MainViewModelDelegate {
     func refreshView() {
         updateView()
-    }
-
-    func addLocation() {
-        let addLocationViewController = AddLocationViewController(nibName: nil, bundle: nil)
-        addLocationViewController.delegate = self
-        let navigationController = UINavigationController()
-        navigationController.pushViewController(addLocationViewController, animated: false)
-        present(navigationController, animated: true)
     }
 
     func showLocation(location: String) {
