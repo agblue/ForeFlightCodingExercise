@@ -37,15 +37,18 @@ class LocationDetailViewModel {
 
     // MARK: - Public Functions
     func startTimer() {
-        guard location != nil else { return }
-        // Schedule a 15 second timer
         self.timer?.invalidate()
+        guard location != nil else { return }
+        
+        // Schedule a 15 second timer
         self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { [weak self] _ in
             self?.fetchData()
         })
     }
 
     func loadData() {
+        conditions = nil
+        forecast = nil
         guard let location = location else {
             self.delegate?.refreshView()
             return

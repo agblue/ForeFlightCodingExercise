@@ -115,6 +115,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            if let selectedIndex = viewModel.selectedIndex, selectedIndex == indexPath.row {
+                showLocation(location: nil)
+            }
             viewModel.removeLocation(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -127,7 +130,7 @@ extension MainViewController: MainViewModelDelegate {
         updateView()
     }
 
-    func showLocation(location: String) {
+    func showLocation(location: String?) {
         guard let locationViewController = splitViewController?.viewController(for: .secondary) as? LocationDetailViewController else { return }
         locationViewController.updateLocation(location)
         splitViewController?.showDetailViewController(locationViewController, sender: self)
@@ -147,6 +150,6 @@ extension MainViewController: AddLocationViewControllerDelegate {
         // Select the location in the details view.
         locationsTableView.reloadData()
         locationsTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
-        showLocation(location: location)
+        viewModel.selectLocation(at: 0)
     }
 }

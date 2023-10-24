@@ -9,7 +9,7 @@ import Foundation
 
 protocol MainViewModelDelegate: MainViewController {
     func refreshView()
-    func showLocation(location: String)
+    func showLocation(location: String?)
 }
 
 class MainViewModel {
@@ -18,6 +18,7 @@ class MainViewModel {
     var dataManager: DataManager
     weak var delegate: MainViewModelDelegate?
     lazy var locationData = Locations(delegate: self)
+    var selectedIndex: Int?
 
     // MARK: - Lifecycle Functions
     init(dataManager: DataManager, delegate: MainViewModelDelegate? = nil) {
@@ -29,6 +30,7 @@ class MainViewModel {
     func selectLocation(at index: Int) {
         guard index < locationData.count else { return }
         if let location = locationData.at(index) {
+            selectedIndex = index
             self.delegate?.showLocation(location: location)
         }
     }
