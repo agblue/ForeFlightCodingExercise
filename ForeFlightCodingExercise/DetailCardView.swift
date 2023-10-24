@@ -66,11 +66,12 @@ class DetailCardView: UIView {
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
 
             frameView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             frameView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             frameView.topAnchor.constraint(equalTo: self.topAnchor),
-            frameView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
+            frameView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
 
     }

@@ -13,7 +13,19 @@ class LocationDetailViewController: UIViewController {
     private let viewModel: LocationDetailViewModel
 
     // MARK: - UI Elements
-    let detailsSegmentedControl: UISegmentedControl = {
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+
+    private let contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    private let detailsSegmentedControl: UISegmentedControl = {
         let segmentControl = UISegmentedControl()
         segmentControl.insertSegment(withTitle: "Conditions", at: 0, animated: false)
         segmentControl.insertSegment(withTitle: "Forecast", at: 1, animated: false)
@@ -21,7 +33,7 @@ class LocationDetailViewController: UIViewController {
         return segmentControl
     }()
 
-    var conditionsCard: DetailCardView = {
+    private let conditionsCard: DetailCardView = {
         let view = DetailCardView(date: nil, text: nil, elevation: nil, temp: nil, dewpoint: nil, pressureHg: nil, pressureHpa: nil, humidity: nil)
         view.isHidden = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -59,18 +71,32 @@ class LocationDetailViewController: UIViewController {
     }
 
     private func layoutView() {
-        view.addSubview(detailsSegmentedControl)
-        view.addSubview(conditionsCard)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+
+        contentView.addSubview(detailsSegmentedControl)
+        contentView.addSubview(conditionsCard)
 
         NSLayoutConstraint.activate([
-            detailsSegmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 100),
-            detailsSegmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -100),
-            detailsSegmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+
+            detailsSegmentedControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            detailsSegmentedControl.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8),
+            detailsSegmentedControl.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
 
             conditionsCard.leadingAnchor.constraint(equalTo: detailsSegmentedControl.leadingAnchor),
             conditionsCard.trailingAnchor.constraint(equalTo: detailsSegmentedControl.trailingAnchor),
             conditionsCard.topAnchor.constraint(equalTo: detailsSegmentedControl.bottomAnchor, constant: 20),
-            conditionsCard.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            conditionsCard.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
         ])
     }
 
