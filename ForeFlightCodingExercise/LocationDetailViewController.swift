@@ -63,7 +63,6 @@ class LocationDetailViewController: UIViewController {
         setupButtons()
         layoutView()
         viewModel.loadData()
-//        updateView()
     }
 
     // MARK: - Private Functions
@@ -120,8 +119,7 @@ class LocationDetailViewController: UIViewController {
         viewModel.fetchData()
     }
 
-    // MARK: - Public Functions
-    func updateView() {
+    private func updateView() {
         if let location = viewModel.location {
             self.title = location
         } else {

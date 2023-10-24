@@ -15,6 +15,7 @@ protocol AddLocationViewModelDelegate: AddLocationViewController {
 
 class AddLocationViewModel {
 
+    // MARK: - Public Properties
     var dataManager: DataManager
     weak var delegate: AddLocationViewModelDelegate?
     var location: String?
@@ -24,12 +25,14 @@ class AddLocationViewModel {
         }
     }
 
+    // MARK: - Lifecycle Functions
     init(dataManager: DataManager, location: String? = nil, delegate: AddLocationViewModelDelegate? = nil) {
         self.dataManager = dataManager
         self.location = location
         self.delegate = delegate
     }
 
+    // MARK: - Public Functions
     func addLocation(_ location: String?) {
         // Validate the location
         guard let location = location,

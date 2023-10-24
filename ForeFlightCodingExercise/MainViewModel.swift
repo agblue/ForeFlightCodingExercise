@@ -14,16 +14,18 @@ protocol MainViewModelDelegate: MainViewController {
 
 class MainViewModel {
 
+    // MARK: - Public Properties
     var dataManager: DataManager
+    weak var delegate: MainViewModelDelegate?
     lazy var locationData = Locations(delegate: self)
 
-    weak var delegate: MainViewModelDelegate?
-
+    // MARK: - Lifecycle Functions
     init(dataManager: DataManager, delegate: MainViewModelDelegate? = nil) {
         self.dataManager = dataManager
         self.delegate = delegate
     }
 
+    // MARK: - Public Functions
     func selectLocation(at index: Int) {
         guard index < locationData.count else { return }
         if let location = locationData.at(index) {
@@ -52,6 +54,7 @@ class MainViewModel {
     }
 }
 
+// MARK: - LocationsDelegate
 extension MainViewModel: LocationsDelegate {
     func locationsUpdated() {
         self.delegate?.refreshView()

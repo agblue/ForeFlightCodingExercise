@@ -104,6 +104,7 @@ class AddLocationViewController: UIViewController {
         addTextField.becomeFirstResponder()
     }
 
+    // MARK: - Private Functions
     private func setupView() {
         title = "Add Airport Location"
         view.backgroundColor = .white
@@ -163,6 +164,7 @@ class AddLocationViewController: UIViewController {
     }
 }
 
+// MARK: - UITextFieldDelegate
 extension AddLocationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard textField.text?.unicodeScalars.count == AddLocationViewController.maxLocationLength else {
@@ -187,6 +189,7 @@ extension AddLocationViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: - AddLocationViewModelDelegate
 extension AddLocationViewController: AddLocationViewModelDelegate {
     func refreshView() {
         DispatchQueue.main.async { [weak self] in

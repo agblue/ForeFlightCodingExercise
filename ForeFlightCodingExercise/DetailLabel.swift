@@ -77,5 +77,4 @@ class DetailLabel: UIView {
         self.units = units ?? ""
         updateView()
     }
-
 }

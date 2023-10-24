@@ -12,6 +12,7 @@ protocol LocationDetailViewModelProtocol: AnyObject {
 }
 
 class LocationDetailViewModel {
+    // MARK: - Public Properties
     var dataManager: DataManager
     var location: String?
     weak var delegate: LocationDetailViewModelProtocol?
@@ -19,8 +20,10 @@ class LocationDetailViewModel {
     var conditions: ConditionsEntity?
     var forecast: ForecastEntity?
 
+    // MARK: - Private Properties
     private var timer: Timer?
 
+    // MARK: - Lifecycle Functions
     init(dataManager: DataManager, location: String? = nil, delegate: LocationDetailViewModelProtocol? = nil) {
         self.dataManager = dataManager
         self.location = location
@@ -33,14 +36,15 @@ class LocationDetailViewModel {
         self.timer?.invalidate()
     }
 
+    // MARK: - Private Functions
     private func startTimer() {
-        // Schedule a 30 second timer
-        self.timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { [weak self] _ in
+        // Schedule a 15 second timer
+        self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { [weak self] _ in
             self?.fetchData()
         })
-        self.timer?.fire()
     }
 
+    // MARK: - Public Functions
     func loadData() {
         guard let location = location else {
             self.delegate?.refreshView()
@@ -52,6 +56,8 @@ class LocationDetailViewModel {
             conditions = report.conditions
             forecast = report.forecast
             self.delegate?.refreshView()
+        } else {
+            fetchData()
         }
     }
 

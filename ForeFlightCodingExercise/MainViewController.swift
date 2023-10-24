@@ -45,6 +45,7 @@ class MainViewController: UIViewController {
         updateView()
     }
 
+    // MARK: - Private Functions
     private func setupView() {
         title = "ForeFlight Weather"
         view.backgroundColor = .white
@@ -72,7 +73,6 @@ class MainViewController: UIViewController {
         ])
     }
 
-    // MARK: - Private Functions
     @objc private func addButtonTapped() {
         showAddLocation()
     }
@@ -91,7 +91,7 @@ class MainViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDelegate, UITableViewDataSource Protocol
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.locationData.count
@@ -121,7 +121,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: - MainViewModelDelegate Protocol
+// MARK: - MainViewModelDelegate
 extension MainViewController: MainViewModelDelegate {
     func refreshView() {
         updateView()
@@ -138,6 +138,7 @@ extension MainViewController: MainViewModelDelegate {
     }
 }
 
+// MARK: - AddLocationViewControllerDelegate
 extension MainViewController: AddLocationViewControllerDelegate {
     func didCancel() {
         // Cancel AddLocation was tapped.

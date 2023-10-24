@@ -10,9 +10,14 @@ import Foundation
 
 class DataManager {
 
-    var moc: NSManagedObjectContext?
+    // MARK: - Public Properties
+    // This context should always exist if we have properly loaded the container.
+    var moc: NSManagedObjectContext!
+
+    // MARK: - Private Properties
     private let container = NSPersistentContainer(name: "ForeFlightWeather")
 
+    // MARK: - Lifecycle
     init() {
         container.loadPersistentStores { description, error in
             if let error = error {
@@ -23,50 +28,7 @@ class DataManager {
         }
     }
 
-    func getReportFor(location: String) async -> Bool {
-        print("PRINT: Fetching report for location: \(location)")
-        guard let url = URL(string: "https://qa.foreflight.com/weather/report/\(location)") else { return false }
-        var request = URLRequest(url: url)
-        request.setValue("1", forHTTPHeaderField: "ff-coding-exercise")
-
-        do {
-            let (data, _) = try await URLSession.shared.data(for: request)
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-
-            let weatherReport = try decoder.decode(WeatherReport.self, from: data)
-            if let report = weatherReport.report {
-                DispatchQueue.main.async { [weak self, location, report] in
-//                    self?.deleteExistingReportFromCoreData(for: location)
-                    self?.saveReportToCoreData(for: location, report: report)
-                }
-//                deleteExistingReportFromCoreData(for: location)
-//                saveReportToCoreData(for: location, report: report)
-                return true
-            }
-
-        } catch {
-            // Handle Thrown errors here.
-            print("PRINT: Decoding Error: \(error.localizedDescription)")
-        }
-        return false
-    }
-
-    private func deleteExistingReportFromCoreData(for location: String) {
-        guard let moc = moc else { return }
-        let request = ReportEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "\(#keyPath(ReportEntity.ident)) =[c] %@", location)
-        if let reports = try? moc.fetch(request) {
-            for report in reports {
-                moc.delete(report)
-            }
-        }
-
-        if moc.hasChanges {
-            try? moc.save()
-        }
-    }
-
+    // MARK: - Private Functions
     private func saveReportToCoreData(for location: String, report: ReportModel) {
         guard let moc = moc else { return }
         let reportEntity = ReportEntity(context: moc)
@@ -111,5 +73,32 @@ class DataManager {
         if moc.hasChanges {
             try? moc.save()
         }
+    }
+
+    // MARK: - Public Functions
+    func getReportFor(location: String) async -> Bool {
+        print("PRINT: Fetching report for location: \(location)")
+        guard let url = URL(string: "https://qa.foreflight.com/weather/report/\(location)") else { return false }
+        var request = URLRequest(url: url)
+        request.setValue("1", forHTTPHeaderField: "ff-coding-exercise")
+
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+
+            let weatherReport = try decoder.decode(WeatherReport.self, from: data)
+            if let report = weatherReport.report {
+                DispatchQueue.main.async { [weak self, location, report] in
+                    self?.saveReportToCoreData(for: location, report: report)
+                }
+                return true
+            }
+
+        } catch {
+            // Handle Thrown errors here.
+            print("PRINT: Decoding Error: \(error.localizedDescription)")
+        }
+        return false
     }
 }

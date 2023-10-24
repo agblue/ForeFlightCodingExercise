@@ -9,6 +9,7 @@ import UIKit
 
 class DetailCardView: UIView {
     
+    // MARK: - Public Properties
     var date: Date?
     var text: String?
     var elevation: Float?
@@ -18,6 +19,7 @@ class DetailCardView: UIView {
     var pressureHpa: Double?
     var humidity: Float?
 
+    // MARK: - UI Elements
     private let frameView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -34,6 +36,7 @@ class DetailCardView: UIView {
         return stackView
     }()
 
+    // MARK: - Lifecycle Functions
     init(date: Date?, text: String?, elevation: Float?, temp: Float?, dewpoint: Float?, pressureHg: Float?, pressureHpa: Double?, humidity: Float?) {
         self.date = date
         self.text = text
@@ -45,7 +48,6 @@ class DetailCardView: UIView {
         self.humidity = humidity
 
         super.init(frame: .zero)
-        setupView()
         layoutView()
         updateView()
     }
@@ -54,10 +56,7 @@ class DetailCardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupView() {
-
-    }
-
+    // MARK: - Private Functions
     private func layoutView() {
         self.addSubview(frameView)
         self.addSubview(stackView)
@@ -105,6 +104,7 @@ class DetailCardView: UIView {
         }
     }
 
+    // MARK: - Public Functions
     func configureView(date: Date?, text: String?, elevation: Float?, temp: Float?, dewpoint: Float?, pressureHg: Float?, pressureHpa: Double?, humidity: Float?) {
         self.date = date
         self.text = text

@@ -27,7 +27,6 @@
 		F5793B632AE76759005581CB /* DetailCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B622AE76759005581CB /* DetailCardView.swift */; };
 		F5793B652AE7694F005581CB /* DetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B642AE7694F005581CB /* DetailLabel.swift */; };
 		F5793B682AE77259005581CB /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B672AE77259005581CB /* UIStackView+Extension.swift */; };
-		F5793B6A2AE7893A005581CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B692AE7893A005581CB /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +52,6 @@
 		F5793B622AE76759005581CB /* DetailCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardView.swift; sourceTree = "<group>"; };
 		F5793B642AE7694F005581CB /* DetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLabel.swift; sourceTree = "<group>"; };
 		F5793B672AE77259005581CB /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
-		F5793B692AE7893A005581CB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				F5793B0B2AE6C3B2005581CB /* AppDelegate.swift */,
-				F5793B692AE7893A005581CB /* Constants.swift */,
 				F5793B0D2AE6C3B2005581CB /* SceneDelegate.swift */,
 				F5793B1F2AE6C47E005581CB /* MainViewController.swift */,
 				F5793B212AE6C912005581CB /* MainViewModel.swift */,
@@ -97,7 +94,6 @@
 				F5793B252AE6CDED005581CB /* LocationDetailViewModel.swift */,
 				F5793B622AE76759005581CB /* DetailCardView.swift */,
 				F5793B642AE7694F005581CB /* DetailLabel.swift */,
-				F5793B4B2AE70EDF005581CB /* CoreDataEntities */,
 				F5793B2D2AE704FC005581CB /* DataModels */,
 				F5793B662AE7723F005581CB /* Extensions */,
 				F5793B142AE6C3B3005581CB /* Assets.xcassets */,
@@ -119,13 +115,6 @@
 				F5793B382AE70694005581CB /* ForeFlightWeather.xcdatamodeld */,
 			);
 			path = DataModels;
-			sourceTree = "<group>";
-		};
-		F5793B4B2AE70EDF005581CB /* CoreDataEntities */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CoreDataEntities;
 			sourceTree = "<group>";
 		};
 		F5793B662AE7723F005581CB /* Extensions */ = {
@@ -207,7 +196,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5793B202AE6C47E005581CB /* MainViewController.swift in Sources */,
-				F5793B6A2AE7893A005581CB /* Constants.swift in Sources */,
 				F5793B352AE7053C005581CB /* ForecastModel.swift in Sources */,
 				F5793B0C2AE6C3B2005581CB /* AppDelegate.swift in Sources */,
 				F5793B2F2AE7050E005581CB /* WeatherReport.swift in Sources */,
