@@ -17,6 +17,11 @@ class LocationDetailViewModel {
     var location: String?
     weak var delegate: LocationDetailViewModelProtocol?
     var selectedDetailIndex = 0
+    var autoRefresh = false {
+        didSet {
+            startTimer()
+        }
+    }
     var conditions: ConditionsEntity?
     var forecast: ForecastEntity?
 
@@ -28,7 +33,6 @@ class LocationDetailViewModel {
         self.dataManager = dataManager
         self.location = location
         self.delegate = delegate
-        startTimer()
     }
 
     deinit {
@@ -39,11 +43,13 @@ class LocationDetailViewModel {
     func startTimer() {
         self.timer?.invalidate()
         guard location != nil else { return }
-        
-        // Schedule a 15 second timer
-        self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { [weak self] _ in
-            self?.fetchData()
-        })
+
+        // Schedule a 15 second timer if autorefresh is on.
+        if autoRefresh {
+            self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { [weak self] _ in
+                self?.fetchData()
+            })
+        }
     }
 
     func loadData() {

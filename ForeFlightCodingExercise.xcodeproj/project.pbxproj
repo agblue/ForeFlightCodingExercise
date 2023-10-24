@@ -30,7 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F5793B082AE6C3B2005581CB /* ForeFlightCodingExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForeFlightCodingExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5793B082AE6C3B2005581CB /* FF Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FF Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5793B0B2AE6C3B2005581CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5793B0D2AE6C3B2005581CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F5793B142AE6C3B3005581CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 		F5793B092AE6C3B2005581CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F5793B082AE6C3B2005581CB /* ForeFlightCodingExercise.app */,
+				F5793B082AE6C3B2005581CB /* FF Weather.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,7 +142,7 @@
 			);
 			name = ForeFlightCodingExercise;
 			productName = ForeFlightCodingExercise;
-			productReference = F5793B082AE6C3B2005581CB /* ForeFlightCodingExercise.app */;
+			productReference = F5793B082AE6C3B2005581CB /* FF Weather.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -369,7 +369,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dannytsang.ForeFlightCodingExercise;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "FF Weather";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -396,7 +396,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dannytsang.ForeFlightCodingExercise;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "FF Weather";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

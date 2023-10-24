@@ -38,6 +38,22 @@ class LocationDetailViewController: UIViewController {
         return segmentControl
     }()
 
+    private let toggleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Auto Refresh"
+        label.font = UIFont.preferredFont(forTextStyle: .caption1)
+        label.textAlignment = .right
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private let toggleSwitch: UISwitch = {
+        let toggle = UISwitch()
+        toggle.isOn = false
+        toggle.translatesAutoresizingMaskIntoConstraints = false
+        return toggle
+    }()
+
     private let cardsStack: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -73,10 +89,11 @@ class LocationDetailViewController: UIViewController {
 
     private func setupButtons() {
         refreshButton.target = self
-        refreshButton.action = #selector(refresButtonTapped)
+        refreshButton.action = #selector(refreshButtonTapped)
         self.navigationItem.rightBarButtonItem = refreshButton
 
         detailsSegmentedControl.addTarget(self, action: #selector(segmentSelected), for: .valueChanged)
+        toggleSwitch.addTarget(self, action: #selector(toggleChanged), for: .valueChanged)
     }
 
     private func layoutView() {
@@ -84,6 +101,8 @@ class LocationDetailViewController: UIViewController {
         scrollView.addSubview(contentView)
 
         contentView.addSubview(detailsSegmentedControl)
+        contentView.addSubview(toggleLabel)
+        contentView.addSubview(toggleSwitch)
         contentView.addSubview(cardsStack)
 
         NSLayoutConstraint.activate([
@@ -102,9 +121,15 @@ class LocationDetailViewController: UIViewController {
             detailsSegmentedControl.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8),
             detailsSegmentedControl.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
 
+            toggleSwitch.trailingAnchor.constraint(equalTo: detailsSegmentedControl.trailingAnchor),
+            toggleSwitch.topAnchor.constraint(equalTo: detailsSegmentedControl.bottomAnchor, constant: 20),
+
+            toggleLabel.centerYAnchor.constraint(equalTo: toggleSwitch.centerYAnchor),
+            toggleLabel.trailingAnchor.constraint(equalTo: toggleSwitch.leadingAnchor, constant: -10),
+
             cardsStack.leadingAnchor.constraint(equalTo: detailsSegmentedControl.leadingAnchor),
             cardsStack.trailingAnchor.constraint(equalTo: detailsSegmentedControl.trailingAnchor),
-            cardsStack.topAnchor.constraint(equalTo: detailsSegmentedControl.bottomAnchor, constant: 20),
+            cardsStack.topAnchor.constraint(equalTo: toggleSwitch.bottomAnchor, constant: 20),
             cardsStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
         ])
     }
@@ -115,7 +140,11 @@ class LocationDetailViewController: UIViewController {
         updateView()
     }
 
-    @objc private func refresButtonTapped() {
+    @objc private func toggleChanged(sender: UISwitch) {
+        viewModel.autoRefresh = sender.isOn
+    }
+
+    @objc private func refreshButtonTapped() {
         viewModel.fetchData()
     }
 
@@ -127,6 +156,8 @@ class LocationDetailViewController: UIViewController {
         }
 
         detailsSegmentedControl.selectedSegmentIndex = viewModel.selectedDetailIndex
+
+        toggleSwitch.isOn = viewModel.autoRefresh
 
         cardsStack.removeAllArrangedViews()
         if viewModel.selectedDetailIndex == 0 {
