@@ -14,11 +14,14 @@ protocol AddLocationViewModelDelegate: AddLocationViewController {
 
 class AddLocationViewModel {
 
+    var dataManager: DataManager
     weak var delegate: AddLocationViewModelDelegate?
     var location: String?
 
-    init(location: String?) {
+    init(dataManager: DataManager, location: String? = nil, delegate: AddLocationViewModelDelegate? = nil) {
+        self.dataManager = dataManager
         self.location = location
+        self.delegate = delegate
     }
 
     func addLocation(_ location: String?) {
@@ -29,7 +32,7 @@ class AddLocationViewModel {
         // Call the API to retrive location
         self.location = location
         Task {
-            let result = await DataManager().getReportFor(location: location)
+            let result = await dataManager.getReportFor(location: location)
             print("PRINT: Report downloaded result: \(result)")
             DispatchQueue.main.async { [weak self] in
                 self?.delegate?.addLocation(success: result)

@@ -83,8 +83,8 @@ class MainViewController: UIViewController {
     }
 
     func showAddLocation() {
-        let addLocationViewController = AddLocationViewController(nibName: nil, bundle: nil)
-        addLocationViewController.delegate = self
+        let addLocationViewModel = AddLocationViewModel(dataManager: viewModel.dataManager)
+        let addLocationViewController = AddLocationViewController(delegate: self, viewModel: addLocationViewModel)
         let navigationController = UINavigationController()
         navigationController.pushViewController(addLocationViewController, animated: false)
         present(navigationController, animated: true)
@@ -117,7 +117,7 @@ extension MainViewController: MainViewModelDelegate {
     }
 
     func showLocation(location: String) {
-        let locationViewModel = LocationDetailViewModel(location: location)
+        let locationViewModel = LocationDetailViewModel(dataManager: viewModel.dataManager, location: location)
         let locationViewController = LocationDetailViewController(viewModel: locationViewModel)
         let navigationController = UINavigationController()
         navigationController.pushViewController(locationViewController, animated: false)

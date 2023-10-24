@@ -14,11 +14,13 @@ protocol MainViewModelDelegate: MainViewController {
 
 class MainViewModel {
 
+    var dataManager: DataManager
     var locations = Locations()
 
     weak var delegate: MainViewModelDelegate?
 
-    init(delegate: MainViewModelDelegate?) {
+    init(dataManager: DataManager, delegate: MainViewModelDelegate? = nil) {
+        self.dataManager = dataManager
         self.delegate = delegate
     }
 

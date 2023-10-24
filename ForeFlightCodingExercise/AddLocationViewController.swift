@@ -19,7 +19,7 @@ class AddLocationViewController: UIViewController {
     weak var delegate: AddLocationViewControllerDelegate?
 
     // MARK: - Private Properties
-    private let viewModel: AddLocationViewModel = AddLocationViewModel(location: nil)
+    private let viewModel: AddLocationViewModel
 
     // MARK: - UI Elements
     private let cancelButton: UIBarButtonItem = {
@@ -27,9 +27,17 @@ class AddLocationViewController: UIViewController {
         return button
     }()
 
+    private let airplaneImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(systemName: "airplane.departure")?.withConfiguration(UIImage.SymbolConfiguration(paletteColors: [Constants.highlightColor])))
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+
     private let addLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20.0)
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.adjustsFontForContentSizeCategory = true
         label.text = "Enter the airport identifer to add. (ex: KHOU)"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -38,7 +46,9 @@ class AddLocationViewController: UIViewController {
     private let addTextField: UITextField = {
         let textField = UITextField()
         textField.textAlignment = .center
-        textField.font = UIFont.boldSystemFont(ofSize: 32)
+        textField.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        textField.adjustsFontForContentSizeCategory = true
+        textField.autocorrectionType = .no
         textField.autocapitalizationType = .allCharacters
         textField.returnKeyType = .done
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -46,12 +56,16 @@ class AddLocationViewController: UIViewController {
     }()
 
     private let addButton: UIButton = {
+        var attributeContainer = AttributeContainer()
+        attributeContainer.font = UIFont.preferredFont(forTextStyle: .headline)
+
         var config = UIButton.Configuration.filled()
-        config.baseBackgroundColor = .blue
+        config.baseBackgroundColor = Constants.highlightColor
         config.cornerStyle = .capsule
-        config.title = "Add Location"
+        config.attributedTitle = AttributedString("Add Location", attributes: attributeContainer)
 
         let button = UIButton(configuration: config)
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -62,7 +76,17 @@ class AddLocationViewController: UIViewController {
         return label
     }()
 
-    // MARK: - View Lifecycle
+    // MARK: - Lifecycle Functions
+    init(delegate: AddLocationViewControllerDelegate? = nil, viewModel: AddLocationViewModel) {
+        self.delegate = delegate
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -94,13 +118,19 @@ class AddLocationViewController: UIViewController {
 
     private func layoutView() {
         navigationItem.leftBarButtonItem = cancelButton
+        view.addSubview(airplaneImageView)
         view.addSubview(addLabel)
         view.addSubview(addTextField)
         view.addSubview(addButton)
 
         NSLayoutConstraint.activate([
+            airplaneImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            airplaneImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
+            airplaneImageView.heightAnchor.constraint(equalToConstant: 120),
+            airplaneImageView.widthAnchor.constraint(equalToConstant: 300),
+
             addLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            addLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            addLabel.topAnchor.constraint(equalTo: airplaneImageView.bottomAnchor, constant: 10),
 
             addTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             addTextField.topAnchor.constraint(equalTo: addLabel.bottomAnchor, constant: 20),
@@ -162,7 +192,7 @@ extension AddLocationViewController: AddLocationViewModelDelegate {
             return
         }
 
-        let alert = UIAlertController(title: "Invalid Location", message: "Unable to add the location \(location)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Invalid Location", message: "Unable to validate the location \(location).", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
             self?.addTextField.becomeFirstResponder()
         })

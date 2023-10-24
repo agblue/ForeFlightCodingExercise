@@ -23,15 +23,11 @@
 		F5793B332AE7052E005581CB /* ConditionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B322AE7052E005581CB /* ConditionsModel.swift */; };
 		F5793B352AE7053C005581CB /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B342AE7053C005581CB /* ForecastModel.swift */; };
 		F5793B3A2AE70694005581CB /* ForeFlightWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5793B382AE70694005581CB /* ForeFlightWeather.xcdatamodeld */; };
-		F5793B522AE71728005581CB /* ForecastEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B4C2AE71728005581CB /* ForecastEntity+CoreDataClass.swift */; };
-		F5793B532AE71728005581CB /* ForecastEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B4D2AE71728005581CB /* ForecastEntity+CoreDataProperties.swift */; };
-		F5793B542AE71728005581CB /* ConditionsEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B4E2AE71728005581CB /* ConditionsEntity+CoreDataClass.swift */; };
-		F5793B552AE71728005581CB /* ConditionsEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B4F2AE71728005581CB /* ConditionsEntity+CoreDataProperties.swift */; };
-		F5793B562AE71728005581CB /* ReportEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B502AE71728005581CB /* ReportEntity+CoreDataClass.swift */; };
-		F5793B572AE71728005581CB /* ReportEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B512AE71728005581CB /* ReportEntity+CoreDataProperties.swift */; };
-		F5793B5A2AE722FD005581CB /* ForecastConditionEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B582AE722FD005581CB /* ForecastConditionEntity+CoreDataClass.swift */; };
-		F5793B5B2AE722FD005581CB /* ForecastConditionEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B592AE722FD005581CB /* ForecastConditionEntity+CoreDataProperties.swift */; };
 		F5793B5F2AE75B30005581CB /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B5E2AE75B30005581CB /* Locations.swift */; };
+		F5793B632AE76759005581CB /* DetailCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B622AE76759005581CB /* DetailCardView.swift */; };
+		F5793B652AE7694F005581CB /* DetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B642AE7694F005581CB /* DetailLabel.swift */; };
+		F5793B682AE77259005581CB /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B672AE77259005581CB /* UIStackView+Extension.swift */; };
+		F5793B6A2AE7893A005581CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5793B692AE7893A005581CB /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,15 +49,11 @@
 		F5793B322AE7052E005581CB /* ConditionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsModel.swift; sourceTree = "<group>"; };
 		F5793B342AE7053C005581CB /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
 		F5793B392AE70694005581CB /* ForeFlightWeather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ForeFlightWeather.xcdatamodel; sourceTree = "<group>"; };
-		F5793B4C2AE71728005581CB /* ForecastEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F5793B4D2AE71728005581CB /* ForecastEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F5793B4E2AE71728005581CB /* ConditionsEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConditionsEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F5793B4F2AE71728005581CB /* ConditionsEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConditionsEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F5793B502AE71728005581CB /* ReportEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F5793B512AE71728005581CB /* ReportEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F5793B582AE722FD005581CB /* ForecastConditionEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastConditionEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F5793B592AE722FD005581CB /* ForecastConditionEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastConditionEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F5793B5E2AE75B30005581CB /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
+		F5793B622AE76759005581CB /* DetailCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardView.swift; sourceTree = "<group>"; };
+		F5793B642AE7694F005581CB /* DetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLabel.swift; sourceTree = "<group>"; };
+		F5793B672AE77259005581CB /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
+		F5793B692AE7893A005581CB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +86,9 @@
 		F5793B0A2AE6C3B2005581CB /* ForeFlightCodingExercise */ = {
 			isa = PBXGroup;
 			children = (
+				F5793B662AE7723F005581CB /* Extensions */,
 				F5793B0B2AE6C3B2005581CB /* AppDelegate.swift */,
+				F5793B692AE7893A005581CB /* Constants.swift */,
 				F5793B0D2AE6C3B2005581CB /* SceneDelegate.swift */,
 				F5793B1F2AE6C47E005581CB /* MainViewController.swift */,
 				F5793B212AE6C912005581CB /* MainViewModel.swift */,
@@ -102,6 +96,8 @@
 				F5793B292AE6E98C005581CB /* AddLocationViewModel.swift */,
 				F5793B232AE6CD99005581CB /* LocationDetailViewController.swift */,
 				F5793B252AE6CDED005581CB /* LocationDetailViewModel.swift */,
+				F5793B622AE76759005581CB /* DetailCardView.swift */,
+				F5793B642AE7694F005581CB /* DetailLabel.swift */,
 				F5793B4B2AE70EDF005581CB /* CoreDataEntities */,
 				F5793B2D2AE704FC005581CB /* DataModels */,
 				F5793B142AE6C3B3005581CB /* Assets.xcassets */,
@@ -128,16 +124,16 @@
 		F5793B4B2AE70EDF005581CB /* CoreDataEntities */ = {
 			isa = PBXGroup;
 			children = (
-				F5793B582AE722FD005581CB /* ForecastConditionEntity+CoreDataClass.swift */,
-				F5793B592AE722FD005581CB /* ForecastConditionEntity+CoreDataProperties.swift */,
-				F5793B4C2AE71728005581CB /* ForecastEntity+CoreDataClass.swift */,
-				F5793B4D2AE71728005581CB /* ForecastEntity+CoreDataProperties.swift */,
-				F5793B4E2AE71728005581CB /* ConditionsEntity+CoreDataClass.swift */,
-				F5793B4F2AE71728005581CB /* ConditionsEntity+CoreDataProperties.swift */,
-				F5793B502AE71728005581CB /* ReportEntity+CoreDataClass.swift */,
-				F5793B512AE71728005581CB /* ReportEntity+CoreDataProperties.swift */,
 			);
 			path = CoreDataEntities;
+			sourceTree = "<group>";
+		};
+		F5793B662AE7723F005581CB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F5793B672AE77259005581CB /* UIStackView+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,29 +206,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5793B542AE71728005581CB /* ConditionsEntity+CoreDataClass.swift in Sources */,
 				F5793B202AE6C47E005581CB /* MainViewController.swift in Sources */,
+				F5793B6A2AE7893A005581CB /* Constants.swift in Sources */,
 				F5793B352AE7053C005581CB /* ForecastModel.swift in Sources */,
 				F5793B0C2AE6C3B2005581CB /* AppDelegate.swift in Sources */,
 				F5793B2F2AE7050E005581CB /* WeatherReport.swift in Sources */,
-				F5793B572AE71728005581CB /* ReportEntity+CoreDataProperties.swift in Sources */,
 				F5793B0E2AE6C3B2005581CB /* SceneDelegate.swift in Sources */,
+				F5793B632AE76759005581CB /* DetailCardView.swift in Sources */,
 				F5793B2A2AE6E98C005581CB /* AddLocationViewModel.swift in Sources */,
 				F5793B5F2AE75B30005581CB /* Locations.swift in Sources */,
-				F5793B562AE71728005581CB /* ReportEntity+CoreDataClass.swift in Sources */,
 				F5793B282AE6E53E005581CB /* AddLocationViewController.swift in Sources */,
-				F5793B5A2AE722FD005581CB /* ForecastConditionEntity+CoreDataClass.swift in Sources */,
 				F5793B222AE6C912005581CB /* MainViewModel.swift in Sources */,
-				F5793B522AE71728005581CB /* ForecastEntity+CoreDataClass.swift in Sources */,
-				F5793B552AE71728005581CB /* ConditionsEntity+CoreDataProperties.swift in Sources */,
+				F5793B652AE7694F005581CB /* DetailLabel.swift in Sources */,
 				F5793B3A2AE70694005581CB /* ForeFlightWeather.xcdatamodeld in Sources */,
 				F5793B332AE7052E005581CB /* ConditionsModel.swift in Sources */,
-				F5793B5B2AE722FD005581CB /* ForecastConditionEntity+CoreDataProperties.swift in Sources */,
 				F5793B312AE7051E005581CB /* ReportModel.swift in Sources */,
 				F5793B262AE6CDED005581CB /* LocationDetailViewModel.swift in Sources */,
 				F5793B2C2AE6F993005581CB /* DataManager.swift in Sources */,
+				F5793B682AE77259005581CB /* UIStackView+Extension.swift in Sources */,
 				F5793B242AE6CD99005581CB /* LocationDetailViewController.swift in Sources */,
-				F5793B532AE71728005581CB /* ForecastEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
