@@ -13,7 +13,7 @@
         <attribute name="relativeHumidity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="tempC" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="text" optional="YES" attributeType="String"/>
-        <relationship name="report" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ReportEntity" inverseName="conditions" inverseEntity="ReportEntity"/>
+        <relationship name="report" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ReportEntity" inverseName="conditions" inverseEntity="ReportEntity"/>
     </entity>
     <entity name="ForecastConditionEntity" representedClassName="ForecastConditionEntity" syncable="YES" codeGenerationType="class">
         <attribute name="dateIssued" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -23,7 +23,7 @@
         <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="relativeHumidity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="text" optional="YES" attributeType="String"/>
-        <relationship name="forecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ForecastEntity" inverseName="conditions" inverseEntity="ForecastEntity"/>
+        <relationship name="forecast" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ForecastEntity" inverseName="conditions" inverseEntity="ForecastEntity"/>
     </entity>
     <entity name="ForecastEntity" representedClassName="ForecastEntity" syncable="YES" codeGenerationType="class">
         <attribute name="dateIssued" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -32,8 +32,8 @@
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="text" optional="YES" attributeType="String"/>
-        <relationship name="conditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ForecastConditionEntity" inverseName="forecast" inverseEntity="ForecastConditionEntity"/>
-        <relationship name="report" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ReportEntity" inverseName="forecast" inverseEntity="ReportEntity"/>
+        <relationship name="conditions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ForecastConditionEntity" inverseName="forecast" inverseEntity="ForecastConditionEntity"/>
+        <relationship name="report" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ReportEntity" inverseName="forecast" inverseEntity="ReportEntity"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="ident"/>
@@ -42,8 +42,8 @@
     </entity>
     <entity name="ReportEntity" representedClassName="ReportEntity" syncable="YES" codeGenerationType="class">
         <attribute name="ident" optional="YES" attributeType="String"/>
-        <relationship name="conditions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConditionsEntity" inverseName="report" inverseEntity="ConditionsEntity"/>
-        <relationship name="forecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ForecastEntity" inverseName="report" inverseEntity="ForecastEntity"/>
+        <relationship name="conditions" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ConditionsEntity" inverseName="report" inverseEntity="ConditionsEntity"/>
+        <relationship name="forecast" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ForecastEntity" inverseName="report" inverseEntity="ForecastEntity"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="ident"/>

@@ -13,6 +13,11 @@ class LocationDetailViewController: UIViewController {
     private let viewModel: LocationDetailViewModel
 
     // MARK: - UI Elements
+    private let refreshButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(systemItem: .refresh)
+        return button
+    }()
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,11 +38,12 @@ class LocationDetailViewController: UIViewController {
         return segmentControl
     }()
 
-    private let conditionsCard: DetailCardView = {
-        let view = DetailCardView(date: nil, text: nil, elevation: nil, temp: nil, dewpoint: nil, pressureHg: nil, pressureHpa: nil, humidity: nil)
-        view.isHidden = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private let cardsStack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 16.0
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
 
     // MARK: - Lifecycle Functions
@@ -67,6 +73,10 @@ class LocationDetailViewController: UIViewController {
     }
 
     private func setupButtons() {
+        refreshButton.target = self
+        refreshButton.action = #selector(refresButtonTapped)
+        self.navigationItem.rightBarButtonItem = refreshButton
+
         detailsSegmentedControl.addTarget(self, action: #selector(segmentSelected), for: .valueChanged)
     }
 
@@ -75,7 +85,7 @@ class LocationDetailViewController: UIViewController {
         scrollView.addSubview(contentView)
 
         contentView.addSubview(detailsSegmentedControl)
-        contentView.addSubview(conditionsCard)
+        contentView.addSubview(cardsStack)
 
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -93,16 +103,21 @@ class LocationDetailViewController: UIViewController {
             detailsSegmentedControl.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8),
             detailsSegmentedControl.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
 
-            conditionsCard.leadingAnchor.constraint(equalTo: detailsSegmentedControl.leadingAnchor),
-            conditionsCard.trailingAnchor.constraint(equalTo: detailsSegmentedControl.trailingAnchor),
-            conditionsCard.topAnchor.constraint(equalTo: detailsSegmentedControl.bottomAnchor, constant: 20),
-            conditionsCard.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+            cardsStack.leadingAnchor.constraint(equalTo: detailsSegmentedControl.leadingAnchor),
+            cardsStack.trailingAnchor.constraint(equalTo: detailsSegmentedControl.trailingAnchor),
+            cardsStack.topAnchor.constraint(equalTo: detailsSegmentedControl.bottomAnchor, constant: 20),
+            cardsStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
         ])
     }
 
     @objc private func segmentSelected(sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         viewModel.selectedDetailIndex = index
+        updateView()
+    }
+
+    @objc private func refresButtonTapped() {
+        viewModel.fetchData()
     }
 
     // MARK: - Public Functions
@@ -110,15 +125,16 @@ class LocationDetailViewController: UIViewController {
         if let location = viewModel.location {
             self.title = location
         } else {
-            self.title = "Select Location"
+            self.title = "Select A Location"
         }
 
         detailsSegmentedControl.selectedSegmentIndex = viewModel.selectedDetailIndex
 
+        cardsStack.removeAllArrangedViews()
         if viewModel.selectedDetailIndex == 0 {
             // Show Conditions Card
             if let conditions = viewModel.conditions {
-                conditionsCard.configureView(date: conditions.dateIssued,
+                let conditionsCard = DetailCardView(date: conditions.dateIssued,
                                              text: conditions.text,
                                              elevation: conditions.elevationFt,
                                              temp: conditions.tempC,
@@ -126,10 +142,42 @@ class LocationDetailViewController: UIViewController {
                                              pressureHg: conditions.pressureHg,
                                              pressureHpa: conditions.pressureHpa,
                                              humidity: conditions.relativeHumidity)
-                conditionsCard.isHidden = false
+                cardsStack.addArrangedSubview(conditionsCard)
+
             }
         } else {
-            // Show Forecast Card
+            // Show Forecast Cards
+            if let forecast = viewModel.forecast {
+                let forecastCard = DetailCardView(date: forecast.dateIssued,
+                                                  text: forecast.text,
+                                                  elevation: forecast.elevationFt,
+                                                  temp: nil,
+                                                  dewpoint: nil,
+                                                  pressureHg: nil,
+                                                  pressureHpa: nil,
+                                                  humidity: nil)
+                cardsStack.addArrangedSubview(forecastCard)
+
+                if let conditions = forecast.conditions?.allObjects as? [ForecastConditionEntity] {
+                    let conditionsSorted = conditions.sorted { elementA, elementB in
+                        guard let dateA = elementA.dateIssued else { return false }
+                        guard let dateB = elementB.dateIssued else { return true }
+                        return dateA < dateB
+                    }
+
+                    for condition in conditionsSorted {
+                        let conditionsCard = DetailCardView(date: condition.dateIssued,
+                                                            text: condition.text,
+                                                            elevation: condition.elevationFt,
+                                                            temp: nil,
+                                                            dewpoint: nil,
+                                                            pressureHg: nil,
+                                                            pressureHpa: nil,
+                                                            humidity: condition.relativeHumidity)
+                        cardsStack.addArrangedSubview(conditionsCard)
+                    }
+                }
+            }
         }
     }
 }

@@ -26,7 +26,10 @@ class LocationDetailViewModel {
     }
 
     func loadData() {
-        guard let location = location else { return }
+        guard let location = location else {
+            self.delegate?.refreshView()
+            return
+        }
         let request = ReportEntity.fetchRequest()
         request.predicate = NSPredicate(format: "\(#keyPath(ReportEntity.ident)) = %@", location.lowercased())
         if let report = try? dataManager.moc?.fetch(request).first {
@@ -34,6 +37,17 @@ class LocationDetailViewModel {
             forecast = report.forecast
             self.delegate?.refreshView()
         }
+    }
 
+    func fetchData() {
+        guard let location = location else { return }
+        Task {
+            let result = await dataManager.getReportFor(location: location)
+            if result {
+                DispatchQueue.main.async { [weak self] in
+                    self?.loadData()
+                }
+            }
+        }
     }
 }

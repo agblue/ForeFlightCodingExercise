@@ -85,6 +85,7 @@ class DataManager {
             forecastCondition.text = condition.text
             forecastEntity.addToConditions(forecastCondition)
         }
+        reportEntity.forecast = forecastEntity
 
         if moc.hasChanges {
             try? moc.save()
