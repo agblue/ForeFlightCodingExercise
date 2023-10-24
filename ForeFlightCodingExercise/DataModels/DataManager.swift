@@ -12,7 +12,7 @@ class DataManager {
 
     // MARK: - Public Properties
     // This context should always exist if we have properly loaded the container.
-    var moc: NSManagedObjectContext!
+    var moc: NSManagedObjectContext?
 
     // MARK: - Private Properties
     private let container = NSPersistentContainer(name: "ForeFlightWeather")
@@ -59,6 +59,7 @@ class DataManager {
 
         for condition in report.forecast.conditions {
             let forecastCondition = ForecastConditionEntity(context: moc)
+            forecastCondition.ident = report.forecast.ident
             forecastCondition.dateIssued = condition.dateIssued
             forecastCondition.elevationFt = condition.elevationFt
             forecastCondition.flightRules = condition.flightRules
@@ -71,7 +72,7 @@ class DataManager {
         reportEntity.forecast = forecastEntity
 
         if moc.hasChanges {
-            try? moc.save()
+            try? moc.save
         }
     }
 
@@ -89,12 +90,11 @@ class DataManager {
 
             let weatherReport = try decoder.decode(WeatherReport.self, from: data)
             if let report = weatherReport.report {
-                DispatchQueue.main.async { [weak self, location, report] in
+                DispatchQueue.main.async { [weak self] in
                     self?.saveReportToCoreData(for: location, report: report)
                 }
                 return true
             }
-
         } catch {
             // Handle Thrown errors here.
             print("PRINT: Decoding Error: \(error.localizedDescription)")

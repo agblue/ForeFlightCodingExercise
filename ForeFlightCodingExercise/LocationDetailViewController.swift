@@ -178,6 +178,13 @@ class LocationDetailViewController: UIViewController {
             }
         }
     }
+
+    // MARK: - Public Functions
+    func updateLocation(_ location: String?) {
+        viewModel.location = location
+        viewModel.startTimer()
+        viewModel.loadData()
+    }
 }
 
 extension LocationDetailViewController: LocationDetailViewModelProtocol {

@@ -14,11 +14,17 @@
         <attribute name="tempC" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="text" optional="YES" attributeType="String"/>
         <relationship name="report" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ReportEntity" inverseName="conditions" inverseEntity="ReportEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="ident"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="ForecastConditionEntity" representedClassName="ForecastConditionEntity" syncable="YES" codeGenerationType="class">
         <attribute name="dateIssued" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="elevationFt" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="flightRules" optional="YES" attributeType="String"/>
+        <attribute name="ident" optional="YES" attributeType="String"/>
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="relativeHumidity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -26,6 +32,7 @@
         <relationship name="forecast" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ForecastEntity" inverseName="conditions" inverseEntity="ForecastEntity"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
+                <constraint value="ident"/>
                 <constraint value="dateIssued"/>
             </uniquenessConstraint>
         </uniquenessConstraints>

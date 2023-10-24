@@ -28,7 +28,6 @@ class LocationDetailViewModel {
         self.dataManager = dataManager
         self.location = location
         self.delegate = delegate
-
         startTimer()
     }
 
@@ -36,23 +35,26 @@ class LocationDetailViewModel {
         self.timer?.invalidate()
     }
 
-    // MARK: - Private Functions
-    private func startTimer() {
+    // MARK: - Public Functions
+    func startTimer() {
+        guard location != nil else { return }
         // Schedule a 15 second timer
+        self.timer?.invalidate()
         self.timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { [weak self] _ in
             self?.fetchData()
         })
     }
 
-    // MARK: - Public Functions
     func loadData() {
         guard let location = location else {
             self.delegate?.refreshView()
             return
         }
         let request = ReportEntity.fetchRequest()
+        let reports = try? dataManager.moc?.fetch(request)
         request.predicate = NSPredicate(format: "\(#keyPath(ReportEntity.ident)) =[c] %@", location)
-        if let report = try? dataManager.moc?.fetch(request).first {
+        let report = try? dataManager.moc?.fetch(request).first
+        if let report = report {
             conditions = report.conditions
             forecast = report.forecast
             self.delegate?.refreshView()

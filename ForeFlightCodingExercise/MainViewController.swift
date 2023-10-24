@@ -128,13 +128,9 @@ extension MainViewController: MainViewModelDelegate {
     }
 
     func showLocation(location: String) {
-        let locationViewModel = LocationDetailViewModel(dataManager: viewModel.dataManager, location: location)
-        let locationViewController = LocationDetailViewController(viewModel: locationViewModel)
-        let navigationController = UINavigationController()
-        navigationController.pushViewController(locationViewController, animated: false)
-
-        let splitViewController = self.splitViewController
-        splitViewController?.showDetailViewController(navigationController, sender: self)
+        guard let locationViewController = splitViewController?.viewController(for: .secondary) as? LocationDetailViewController else { return }
+        locationViewController.updateLocation(location)
+        splitViewController?.showDetailViewController(locationViewController, sender: self)
     }
 }
 
