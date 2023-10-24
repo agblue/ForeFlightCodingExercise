@@ -86,7 +86,6 @@
 		F5793B0A2AE6C3B2005581CB /* ForeFlightCodingExercise */ = {
 			isa = PBXGroup;
 			children = (
-				F5793B662AE7723F005581CB /* Extensions */,
 				F5793B0B2AE6C3B2005581CB /* AppDelegate.swift */,
 				F5793B692AE7893A005581CB /* Constants.swift */,
 				F5793B0D2AE6C3B2005581CB /* SceneDelegate.swift */,
@@ -100,6 +99,7 @@
 				F5793B642AE7694F005581CB /* DetailLabel.swift */,
 				F5793B4B2AE70EDF005581CB /* CoreDataEntities */,
 				F5793B2D2AE704FC005581CB /* DataModels */,
+				F5793B662AE7723F005581CB /* Extensions */,
 				F5793B142AE6C3B3005581CB /* Assets.xcassets */,
 				F5793B162AE6C3B3005581CB /* LaunchScreen.storyboard */,
 				F5793B192AE6C3B3005581CB /* Info.plist */,
@@ -110,13 +110,13 @@
 		F5793B2D2AE704FC005581CB /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
+				F5793B5E2AE75B30005581CB /* Locations.swift */,
 				F5793B2B2AE6F993005581CB /* DataManager.swift */,
 				F5793B342AE7053C005581CB /* ForecastModel.swift */,
 				F5793B322AE7052E005581CB /* ConditionsModel.swift */,
 				F5793B302AE7051E005581CB /* ReportModel.swift */,
 				F5793B2E2AE7050E005581CB /* WeatherReport.swift */,
 				F5793B382AE70694005581CB /* ForeFlightWeather.xcdatamodeld */,
-				F5793B5E2AE75B30005581CB /* Locations.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";

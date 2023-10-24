@@ -19,10 +19,26 @@ class LocationDetailViewModel {
     var conditions: ConditionsEntity?
     var forecast: ForecastEntity?
 
+    private var timer: Timer?
+
     init(dataManager: DataManager, location: String? = nil, delegate: LocationDetailViewModelProtocol? = nil) {
         self.dataManager = dataManager
         self.location = location
         self.delegate = delegate
+
+        startTimer()
+    }
+
+    deinit {
+        self.timer?.invalidate()
+    }
+
+    private func startTimer() {
+        // Schedule a 30 second timer
+        self.timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { [weak self] _ in
+            self?.fetchData()
+        })
+        self.timer?.fire()
     }
 
     func loadData() {

@@ -68,11 +68,8 @@ class Locations {
     private func saveLocations() {
         // Save the recent locations list to UserDefaults
         let encoder = JSONEncoder()
-        do {
-            let data = try encoder.encode(recentLocations)
+        if let data = try? encoder.encode(recentLocations) {
             UserDefaults.standard.setValue(data, forKey: "recentLocations")
-        } catch {
-            // Unable to encode data.
         }
     }
 
@@ -83,9 +80,10 @@ class Locations {
     }
 
     func addLocation(_ location: String) {
+        let location = location.uppercased()
         // Check if the location already exists, if so remove it and then insert the location at the beginning of the list.
         recentLocations.removeAll { element in
-            element == location
+            element.uppercased() == location
         }
         recentLocations.insert(location, at: 0)
     }
