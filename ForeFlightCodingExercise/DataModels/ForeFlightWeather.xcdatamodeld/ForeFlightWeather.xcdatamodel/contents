@@ -24,6 +24,11 @@
         <attribute name="relativeHumidity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="text" optional="YES" attributeType="String"/>
         <relationship name="forecast" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ForecastEntity" inverseName="conditions" inverseEntity="ForecastEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="dateIssued"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="ForecastEntity" representedClassName="ForecastEntity" syncable="YES" codeGenerationType="class">
         <attribute name="dateIssued" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

@@ -64,7 +64,9 @@ class AddLocationViewController: UIViewController {
         config.baseBackgroundColor = UIColor(named: "AccentColor")
         config.cornerStyle = .capsule
         config.attributedTitle = AttributedString("Add Location", attributes: attributeContainer)
-
+        config.imagePlacement = .trailing
+        config.imagePadding = 10
+        
         let button = UIButton(configuration: config)
         button.titleLabel?.adjustsFontForContentSizeCategory = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -144,7 +146,8 @@ class AddLocationViewController: UIViewController {
     }
 
     private func updateView() {
-
+        addButton.configuration?.showsActivityIndicator = viewModel.isLoading
+        addButton.isEnabled = !viewModel.isLoading
     }
 
     @objc private func cancelButtonTapped() {
@@ -185,6 +188,12 @@ extension AddLocationViewController: UITextFieldDelegate {
 }
 
 extension AddLocationViewController: AddLocationViewModelDelegate {
+    func refreshView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.updateView()
+        }
+    }
+
     func addLocation(success: Bool) {
         guard let location = viewModel.location else { return }
         if success {

@@ -24,6 +24,7 @@ class DataManager {
     }
 
     func getReportFor(location: String) async -> Bool {
+        print("PRINT: Fetching report for location: \(location)")
         guard let url = URL(string: "https://qa.foreflight.com/weather/report/\(location)") else { return false }
         var request = URLRequest(url: url)
         request.setValue("1", forHTTPHeaderField: "ff-coding-exercise")
@@ -35,7 +36,12 @@ class DataManager {
 
             let weatherReport = try decoder.decode(WeatherReport.self, from: data)
             if let report = weatherReport.report {
-                saveReportToCoreData(location: location, report: report)
+                DispatchQueue.main.async { [weak self, location, report] in
+//                    self?.deleteExistingReportFromCoreData(for: location)
+                    self?.saveReportToCoreData(for: location, report: report)
+                }
+//                deleteExistingReportFromCoreData(for: location)
+//                saveReportToCoreData(for: location, report: report)
                 return true
             }
 
@@ -46,7 +52,22 @@ class DataManager {
         return false
     }
 
-    private func saveReportToCoreData(location: String, report: ReportModel) {
+    private func deleteExistingReportFromCoreData(for location: String) {
+        guard let moc = moc else { return }
+        let request = ReportEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "\(#keyPath(ReportEntity.ident)) =[c] %@", location)
+        if let reports = try? moc.fetch(request) {
+            for report in reports {
+                moc.delete(report)
+            }
+        }
+
+        if moc.hasChanges {
+            try? moc.save()
+        }
+    }
+
+    private func saveReportToCoreData(for location: String, report: ReportModel) {
         guard let moc = moc else { return }
         let reportEntity = ReportEntity(context: moc)
         reportEntity.ident = location.lowercased()
