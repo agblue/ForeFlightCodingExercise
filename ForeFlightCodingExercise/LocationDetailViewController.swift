@@ -68,7 +68,7 @@ class LocationDetailViewController: UIViewController {
 
     // MARK: - Private Functions
     private func setupView() {
-        view.backgroundColor = Constants.backgroundColor
+        view.backgroundColor = UIColor(named: "BackgroundColor")
         viewModel.delegate = self
     }
 

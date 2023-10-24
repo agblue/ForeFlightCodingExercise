@@ -17,6 +17,7 @@ class DetailLabel: UIView {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.textColor = UIColor(named: "PrimaryColor")
         label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -25,6 +26,7 @@ class DetailLabel: UIView {
     private let valueLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = UIColor(named: "SecondaryColor")
         label.adjustsFontForContentSizeCategory = true
         label.textAlignment = .right
         label.numberOfLines = 0

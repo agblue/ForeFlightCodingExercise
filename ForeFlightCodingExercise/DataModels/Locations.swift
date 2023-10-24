@@ -45,4 +45,8 @@ class Locations {
         }
         recentLocations.insert(location, at: 0)
     }
+
+    func removeLocation(at index: Int) {
+        recentLocations.remove(at: index)
+    }
 }

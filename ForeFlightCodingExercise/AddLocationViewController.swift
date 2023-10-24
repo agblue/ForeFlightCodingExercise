@@ -28,7 +28,7 @@ class AddLocationViewController: UIViewController {
     }()
 
     private let airplaneImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(systemName: "airplane.departure")?.withConfiguration(UIImage.SymbolConfiguration(paletteColors: [Constants.highlightColor])))
+        let imageView = UIImageView(image: UIImage(systemName: "airplane.departure")?.withConfiguration(UIImage.SymbolConfiguration(paletteColors: [UIColor(named: "PrimaryColor")!])))
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -38,13 +38,14 @@ class AddLocationViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         label.adjustsFontForContentSizeCategory = true
-        label.text = "Enter the airport identifer to add. (ex: KHOU)"
+        label.text = "Enter the airport identifer to add."
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     private let addTextField: UITextField = {
         let textField = UITextField()
+        textField.placeholder = "(ex: KHOU)"
         textField.textAlignment = .center
         textField.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         textField.adjustsFontForContentSizeCategory = true
@@ -60,7 +61,7 @@ class AddLocationViewController: UIViewController {
         attributeContainer.font = UIFont.preferredFont(forTextStyle: .headline)
 
         var config = UIButton.Configuration.filled()
-        config.baseBackgroundColor = Constants.highlightColor
+        config.baseBackgroundColor = UIColor(named: "AccentColor")
         config.cornerStyle = .capsule
         config.attributedTitle = AttributedString("Add Location", attributes: attributeContainer)
 
@@ -125,9 +126,9 @@ class AddLocationViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             airplaneImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            airplaneImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
-            airplaneImageView.heightAnchor.constraint(equalToConstant: 120),
-            airplaneImageView.widthAnchor.constraint(equalToConstant: 300),
+            airplaneImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            airplaneImageView.heightAnchor.constraint(equalToConstant: 80),
+            airplaneImageView.widthAnchor.constraint(equalToConstant: 120),
 
             addLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             addLabel.topAnchor.constraint(equalTo: airplaneImageView.bottomAnchor, constant: 10),
@@ -155,7 +156,7 @@ class AddLocationViewController: UIViewController {
             return
         }
         addTextField.resignFirstResponder()
-        viewModel.addLocation(addTextField.text)
+        viewModel.addLocation(addTextField.text?.uppercased())
     }
 }
 

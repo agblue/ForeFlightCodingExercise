@@ -33,4 +33,19 @@ class MainViewModel {
     func addLocation(_ location: String) {
         locations.addLocation(location)
     }
+
+    func removeLocation(at index: Int) {
+        let location = locations.recentLocations[index]
+        let request = ReportEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "\(#keyPath(ReportEntity.ident)) =[c] %@", location)
+        if let reports = try? dataManager.moc?.fetch(request) {
+            for report in reports {
+                dataManager.moc?.delete(report)
+            }
+            if let hasChanges = dataManager.moc?.hasChanges, hasChanges == true {
+                try? dataManager.moc?.save()
+            }
+        }
+        locations.removeLocation(at: index)
+    }
 }

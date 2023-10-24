@@ -83,7 +83,7 @@ class DetailCardView: UIView {
             stackView.addArrangedSubview(DetailLabel(name: "Date", value: date.formatted(date: .complete, time: .standard)))
         }
         if let text {
-            stackView.addArrangedSubview(DetailLabel(name: "Description", value: text))
+            stackView.addArrangedSubview(DetailLabel(name: "Text", value: text))
         }
         if let elevation {
             stackView.addArrangedSubview(DetailLabel(name: "Elevation", value: "\(elevation)", units: "ft"))

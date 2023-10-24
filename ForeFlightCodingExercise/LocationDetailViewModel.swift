@@ -31,7 +31,7 @@ class LocationDetailViewModel {
             return
         }
         let request = ReportEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "\(#keyPath(ReportEntity.ident)) = %@", location.lowercased())
+        request.predicate = NSPredicate(format: "\(#keyPath(ReportEntity.ident)) =[c] %@", location)
         if let report = try? dataManager.moc?.fetch(request).first {
             conditions = report.conditions
             forecast = report.forecast
