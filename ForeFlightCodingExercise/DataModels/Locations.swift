@@ -7,27 +7,65 @@
 
 import Foundation
 
+protocol LocationsDelegate: AnyObject {
+    func locationsUpdated()
+}
+
 class Locations {
-    var recentLocations: [String] {
+    
+    weak var delegate: LocationsDelegate?
+
+    var count: Int {
+        return recentLocations.count
+    }
+
+    var locations: [String] {
+        return recentLocations
+    }
+
+    private var recentLocations: [String] {
         didSet {
             saveLocations()
         }
     }
 
-    init() {
+    init(delegate: LocationsDelegate?) {
+        self.delegate = delegate
+
+        // Load the recentlocations from UserDefaults.
         if let recentData = UserDefaults.standard.data(forKey: "recentLocations") {
             let decoder = JSONDecoder()
             if let locations = try? decoder.decode([String].self, from: recentData) {
                 recentLocations = locations
                 return
-
             }
         }
-        // Default recent locations to blank
+        
+        // If key doesn't exist then load the default locations.
         recentLocations = []
+        loadDefaultLocations()
     }
 
-    func saveLocations() {
+    // MARK: - Private Functions
+    private func loadDefaultLocations() {
+        Task {
+            let dataManager = DataManager()
+            let location1 = "KPWM"
+            if await dataManager.getReportFor(location: location1) {
+                addLocation(location1)
+            }
+
+            let location2 = "KAUS"
+            if await dataManager.getReportFor(location: location2) {
+                addLocation(location2)
+            }
+            DispatchQueue.main.async { [weak self] in
+                self?.delegate?.locationsUpdated()
+            }
+        }
+    }
+
+    private func saveLocations() {
         // Save the recent locations list to UserDefaults
         let encoder = JSONEncoder()
         do {
@@ -36,6 +74,12 @@ class Locations {
         } catch {
             // Unable to encode data.
         }
+    }
+
+    // MARK: - Public Functions
+    func at(_ index: Int) -> String? {
+        guard index < recentLocations.count else { return nil }
+        return recentLocations[index]
     }
 
     func addLocation(_ location: String) {

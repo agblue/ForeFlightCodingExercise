@@ -15,7 +15,7 @@ protocol MainViewModelDelegate: MainViewController {
 class MainViewModel {
 
     var dataManager: DataManager
-    var locations = Locations()
+    lazy var locationData = Locations(delegate: self)
 
     weak var delegate: MainViewModelDelegate?
 
@@ -25,27 +25,35 @@ class MainViewModel {
     }
 
     func selectLocation(at index: Int) {
-        guard index < locations.recentLocations.count else { return }
-        let location = locations.recentLocations[index]
-        self.delegate?.showLocation(location: location)
+        guard index < locationData.count else { return }
+        if let location = locationData.at(index) {
+            self.delegate?.showLocation(location: location)
+        }
     }
 
     func addLocation(_ location: String) {
-        locations.addLocation(location)
+        locationData.addLocation(location)
     }
 
     func removeLocation(at index: Int) {
-        let location = locations.recentLocations[index]
-        let request = ReportEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "\(#keyPath(ReportEntity.ident)) =[c] %@", location)
-        if let reports = try? dataManager.moc?.fetch(request) {
-            for report in reports {
-                dataManager.moc?.delete(report)
+        if let location = locationData.at(index) {
+            let request = ReportEntity.fetchRequest()
+            request.predicate = NSPredicate(format: "\(#keyPath(ReportEntity.ident)) =[c] %@", location)
+            if let reports = try? dataManager.moc?.fetch(request) {
+                for report in reports {
+                    dataManager.moc?.delete(report)
+                }
+                if let hasChanges = dataManager.moc?.hasChanges, hasChanges == true {
+                    try? dataManager.moc?.save()
+                }
             }
-            if let hasChanges = dataManager.moc?.hasChanges, hasChanges == true {
-                try? dataManager.moc?.save()
-            }
+            locationData.removeLocation(at: index)
         }
-        locations.removeLocation(at: index)
+    }
+}
+
+extension MainViewModel: LocationsDelegate {
+    func locationsUpdated() {
+        self.delegate?.refreshView()
     }
 }

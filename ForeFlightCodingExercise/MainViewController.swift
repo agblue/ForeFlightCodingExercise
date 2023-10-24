@@ -94,13 +94,13 @@ class MainViewController: UIViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource Protocol
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.locations.recentLocations.count
+        return viewModel.locationData.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? UITableViewCell else { return UITableViewCell() }
 
-        let location = viewModel.locations.recentLocations[indexPath.row]
+        let location = viewModel.locationData.at(indexPath.row)
         cell.textLabel?.text = location
         return cell
     }
